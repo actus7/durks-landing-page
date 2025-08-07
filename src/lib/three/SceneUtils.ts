@@ -286,7 +286,7 @@ export class SceneUtils {
         
         // Limpar cache
         if (renderer.info && renderer.info.programs) {
-          renderer.info.programs.clear();
+          renderer.info.programs.length = 0;
         }
       } catch (e) {
         console.warn('Erro ao limpar cena Three.js:', e);
