@@ -50,7 +50,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
     <div className={`flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 lg:py-0 bg-gradient-to-br from-primary via-primary/90 to-primary ${className}`}>
       <div className="max-w-2xl text-center lg:text-left">
         {/* Logo/Brand */}
-        <div className="mb-6 sm:mb-8">
+        <div className="mb-8 sm:mb-10">
           <DurksLogoImage
             className="w-full max-w-[130px] sm:max-w-[156px] lg:max-w-[182px] xl:max-w-[208px] mx-auto lg:mx-0"
             width={208}
@@ -59,7 +59,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
         </div>
         
         {/* Main Tagline */}
-        <div className="mb-8 sm:mb-12">
+        <div className="mb-10 sm:mb-14">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-4 sm:mb-6 text-primary-foreground">
             {companyData.tagline}
           </h2>
