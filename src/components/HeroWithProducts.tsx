@@ -39,9 +39,7 @@ const HeroWithProducts: React.FC = () => {
         {/* Logo */}
         <div className="mb-8">
           <DurksLogoImage
-            className="w-32 h-auto"
-            width={128}
-            height={77}
+            className="h-auto"
           />
         </div>
 

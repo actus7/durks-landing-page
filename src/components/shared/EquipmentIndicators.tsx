@@ -269,7 +269,7 @@ export const useEquipmentState = (initialEquipment: EquipmentType = 'silo') => {
 };
 
 /**
- * Hook para auto-switch de equipamentos otimizado
+ * Hook para auto-switch de equipamentos
  */
 export const useAutoSwitch = (
   equipments: EquipmentConfig[],
@@ -278,62 +278,19 @@ export const useAutoSwitch = (
   interval: number = 8000,
   enabled: boolean = true
 ) => {
-  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
-  const isActiveRef = React.useRef(false);
-
-  const stopAutoSwitch = React.useCallback(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-    isActiveRef.current = false;
-  }, []);
-
-  const startAutoSwitch = React.useCallback(() => {
-    if (!enabled || equipments.length <= 1 || isActiveRef.current) return;
-
-    isActiveRef.current = true;
-    stopAutoSwitch(); // Limpar timeout existente
-
-    const scheduleNext = () => {
-      if (!isActiveRef.current) return;
-
-      timeoutRef.current = setTimeout(() => {
-        if (!isActiveRef.current) return;
-
-        const currentIndex = equipments.findIndex(eq => eq.id === currentEquipment);
-        const nextIndex = (currentIndex + 1) % equipments.length;
-        const nextEquipment = equipments[nextIndex];
-        
-        switchEquipment(nextEquipment.id);
-        scheduleNext(); // Continue o ciclo
-      }, interval);
-    };
-
-    scheduleNext();
-  }, [enabled, equipments, currentEquipment, switchEquipment, interval, stopAutoSwitch]);
-
   React.useEffect(() => {
-    if (enabled) {
-      startAutoSwitch();
-    } else {
-      stopAutoSwitch();
-    }
+    if (!enabled || equipments.length <= 1) return;
 
-    return stopAutoSwitch;
-  }, [enabled, startAutoSwitch, stopAutoSwitch]);
+    const autoSwitchInterval = setInterval(() => {
+      const currentIndex = equipments.findIndex(eq => eq.id === currentEquipment);
+      const nextIndex = (currentIndex + 1) % equipments.length;
+      const nextEquipment = equipments[nextIndex];
 
-  // Garantir cleanup quando o componente é desmontado
-  React.useEffect(() => {
-    return () => {
-      stopAutoSwitch();
-    };
-  }, [stopAutoSwitch]);
+      switchEquipment(nextEquipment.id);
+    }, interval);
 
-  return {
-    startAutoSwitch,
-    stopAutoSwitch
-  };
+    return () => clearInterval(autoSwitchInterval);
+  }, [enabled, equipments, currentEquipment, switchEquipment, interval]);
 };
 
 export default EquipmentIndicators;

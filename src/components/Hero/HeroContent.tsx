@@ -53,9 +53,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
         {/* Logo/Brand */}
         <div className="mb-8 sm:mb-10 flex justify-center items-center">
           <DurksLogoImage
-            className="w-full max-w-[130px] sm:max-w-[156px] lg:max-w-[182px] xl:max-w-[208px] mx-auto lg:mx-0"
-            width={208}
-            height={125}
+            className="w-full max-w-[260px] sm:max-w-[312px] lg:max-w-[364px] xl:max-w-[416px] mx-auto lg:mx-0"
           />
         </div>
         
