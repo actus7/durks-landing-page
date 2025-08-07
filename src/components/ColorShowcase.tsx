@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTheme } from '@/hooks/useTheme';
+import { Button } from './ui/button';
 
 const ColorShowcase = () => {
   const { theme, toggleTheme } = useTheme();
@@ -47,15 +48,15 @@ const ColorShowcase = () => {
           
           <div className="space-y-4">
             <div className="flex gap-4 flex-wrap">
-              <button className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:opacity-90">
+              <Button variant="default">
                 Botão Primário
-              </button>
-              <button className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:opacity-90">
+              </Button>
+              <Button variant="secondary">
                 Botão Secundário
-              </button>
-              <button className="px-4 py-2 bg-destructive text-destructive-foreground rounded-md hover:opacity-90">
+              </Button>
+              <Button variant="destructive">
                 Botão Destrutivo
-              </button>
+              </Button>
             </div>
 
             <div className="space-y-2">

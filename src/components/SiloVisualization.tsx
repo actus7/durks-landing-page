@@ -40,7 +40,7 @@ const SiloVisualization: React.FC = () => {
   } = useMouseControls({
     initialZoom: 40,
     enableAutoRotation: true,
-    autoRotationSpeed: 0.0002
+    autoRotationSpeed: 0.0008
   });
 
   // Hook para modo de renderização

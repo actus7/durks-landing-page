@@ -1,5 +1,6 @@
 import { companyData } from '../data/company';
 import { Settings, Wrench, CheckCircle } from 'lucide-react';
+import { Button } from './ui/button';
 
 const Services = () => {
   const getIcon = (iconName: string) => {
@@ -68,9 +69,12 @@ const Services = () => {
                   
                   {/* Hover Effect Button */}
                   <div className="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button className="w-full bg-gradient-to-r from-orange-600 to-orange-700 text-white font-semibold py-3 px-6 rounded-lg hover:from-orange-700 hover:to-orange-800 transition-all duration-300 transform hover:scale-105">
+                    <Button
+                      variant="accent"
+                      className="w-full font-semibold"
+                    >
                       Saiba Mais
-                    </button>
+                    </Button>
                   </div>
                 </div>
                 
@@ -91,15 +95,17 @@ const Services = () => {
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
               Nossa equipe está pronta para desenvolver projetos especiais e soluções sob medida para atender às necessidades específicas do seu negócio.
             </p>
-            <button
+            <Button
               onClick={() => {
                 const contactSection = document.getElementById('contact');
                 contactSection?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="bg-gradient-to-r from-orange-600 to-orange-500 text-white font-semibold py-3 px-8 rounded-lg hover:from-orange-500 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              variant="accent"
+              size="lg"
+              className="font-semibold"
             >
               Fale Conosco
-            </button>
+            </Button>
           </div>
         </div>
       </div>

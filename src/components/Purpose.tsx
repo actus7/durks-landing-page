@@ -27,10 +27,7 @@ const Purpose = () => {
               {companyData.purpose}
             </p>
 
-            {/* Mission Icon */}
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-chart-4 to-chart-3 rounded-full mb-8">
-              <Target className="w-10 h-10 text-white" />
-            </div>
+
           </div>
         </div>
         
@@ -38,8 +35,8 @@ const Purpose = () => {
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {/* Innovation */}
           <div className="text-center group">
-            <div className="w-16 h-16 bg-accent rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-              <Lightbulb className="w-8 h-8 text-accent-foreground" />
+            <div className="w-16 h-16 bg-chart-3 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <Lightbulb className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-xl font-bold mb-4">Inovação</h3>
             <p className="text-primary-foreground/80 leading-relaxed">
@@ -60,8 +57,8 @@ const Purpose = () => {
 
           {/* Partnership */}
           <div className="text-center group">
-            <div className="w-16 h-16 bg-accent rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-              <Heart className="w-8 h-8 text-accent-foreground" />
+            <div className="w-16 h-16 bg-chart-3 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <Heart className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-xl font-bold mb-4">Parceria</h3>
             <p className="text-primary-foreground/80 leading-relaxed">
@@ -81,11 +78,11 @@ const Purpose = () => {
                   <div className="text-primary-foreground/80">Projetos Entregues</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-accent mb-2">98%</div>
+                  <div className="text-3xl font-bold text-chart-4 mb-2">98%</div>
                   <div className="text-primary-foreground/80">Satisfação do Cliente</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-accent mb-2">24/7</div>
+                  <div className="text-3xl font-bold text-chart-4 mb-2">24/7</div>
                   <div className="text-primary-foreground/80">Suporte Técnico</div>
                 </div>
               </div>
@@ -103,11 +100,10 @@ const Purpose = () => {
               const contactSection = document.getElementById('contact');
               contactSection?.scrollIntoView({ behavior: 'smooth' });
             }}
+            variant="secondary"
             size="lg"
-            className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-          >
-            Vamos Conversar
-          </Button>
+            className="font-semibold"
+          >Vamos Conversar</Button>
         </div>
       </div>
       

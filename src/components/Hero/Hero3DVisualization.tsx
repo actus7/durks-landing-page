@@ -73,7 +73,7 @@ export const Hero3DVisualization: React.FC<Hero3DVisualizationProps> = React.mem
   } = useMouseControls({
     initialZoom: 40,
     enableAutoRotation: true,
-    autoRotationSpeed: 0.0002
+    autoRotationSpeed: 0.0008
   });
 
   // Estado dos equipamentos

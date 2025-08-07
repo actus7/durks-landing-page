@@ -1,5 +1,6 @@
 import React from 'react';
 import { companyData } from '../../data/company';
+import { Button } from '../ui/button';
 import DurksLogoImage from '../DurksLogoImage';
 
 /**
@@ -47,10 +48,10 @@ export const HeroContent: React.FC<HeroContentProps> = ({
   };
 
   return (
-    <div className={`flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 lg:py-0 bg-gradient-to-br from-primary via-primary/90 to-primary ${className}`}>
+    <div className={`flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 lg:py-0 bg-primary ${className}`}>
       <div className="max-w-2xl text-center lg:text-left">
         {/* Logo/Brand */}
-        <div className="mb-8 sm:mb-10">
+        <div className="mb-8 sm:mb-10 flex justify-center items-center">
           <DurksLogoImage
             className="w-full max-w-[130px] sm:max-w-[156px] lg:max-w-[182px] xl:max-w-[208px] mx-auto lg:mx-0"
             width={208}
@@ -59,7 +60,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
         </div>
         
         {/* Main Tagline */}
-        <div className="mb-10 sm:mb-14">
+        <div className="mb-4 sm:mb-5">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-4 sm:mb-6 text-primary-foreground">
             {companyData.tagline}
           </h2>
@@ -70,20 +71,21 @@ export const HeroContent: React.FC<HeroContentProps> = ({
         
         {/* Call to Action */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-          <button
+          <Button
             onClick={handleContactClick}
-            className="group relative px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white font-semibold rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
-          >
-            <span className="relative z-10">Entre em Contato</span>
-            <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300" />
-          </button>
-          
-          <button
+            variant="secondary"
+            size="lg"
+            className="font-semibold"
+          >Entre em Contato</Button>
+
+          <Button
             onClick={handleAboutClick}
-            className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-teal-900 transition-all duration-300"
+            variant="outline"
+            size="lg"
+            className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold"
           >
             Saiba Mais
-          </button>
+          </Button>
         </div>
       </div>
     </div>

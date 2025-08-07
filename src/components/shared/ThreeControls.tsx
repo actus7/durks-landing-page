@@ -14,7 +14,7 @@ export type ControlsVariant = 'vertical' | 'horizontal' | 'sidebar';
 /**
  * Temas de cores para os controles
  */
-export type ControlsTheme = 'teal' | 'orange' | 'neutral';
+export type ControlsTheme = 'teal' | 'neutral';
 
 /**
  * Estado dos controles de interação
@@ -64,15 +64,11 @@ export interface ThreeControlsProps {
 const THEME_CONFIGS = {
   teal: {
     active: 'bg-primary border-primary text-primary-foreground shadow-lg',
-    inactive: 'bg-sidebar/70 border-sidebar-border text-sidebar-foreground hover:bg-sidebar/80 hover:border-primary'
-  },
-  orange: {
-    active: 'bg-orange-600 border-orange-600 text-white shadow-lg',
-    inactive: 'bg-sidebar/70 border-sidebar-border text-sidebar-foreground hover:bg-sidebar/80 hover:border-orange-500'
+    inactive: 'bg-white/10 border-white/20 text-white hover:bg-primary/30 hover:border-primary hover:text-white'
   },
   neutral: {
     active: 'bg-muted-foreground border-muted-foreground text-white shadow-lg',
-    inactive: 'bg-sidebar/70 border-sidebar-border text-sidebar-foreground hover:bg-sidebar/80 hover:border-muted-foreground'
+    inactive: 'bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/40 hover:text-white'
   }
 };
 
@@ -130,14 +126,14 @@ export const ThreeControls: React.FC<ThreeControlsProps> = ({
     const isActive = currentMode === mode;
     const IconComponent = variant === 'sidebar' ? config.sidebarIcon : config.icon;
 
-    const baseClasses = 'flex items-center justify-center gap-2 text-sm rounded-lg border transition-all duration-300';
+    const baseClasses = 'flex items-center justify-center gap-2 text-sm rounded-lg border transition-all duration-300 hover:scale-105 hover:shadow-lg';
     const sizeClasses = variant === 'sidebar' 
       ? 'px-4 py-3' 
       : showLabels 
         ? 'px-4 py-3' 
         : 'p-3 min-w-[48px] min-h-[48px]';
     
-    const stateClasses = isActive ? themeConfig.active : themeConfig.inactive;
+    const stateClasses = themeConfig.inactive; // Usar estilo padrão para botões de interação
     const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : '';
 
     return (
@@ -186,18 +182,21 @@ export const ThreeControls: React.FC<ThreeControlsProps> = ({
     const isActive = interactionControls[control];
     const IconComponent = icon;
 
-    const baseClasses = 'relative flex items-center justify-center transition-all duration-200 rounded-lg border-2 focus:outline-none focus:ring-2 focus:ring-offset-2';
-    const sizeClasses = showLabels ? 'px-3 py-2 text-sm' : 'p-2';
-    const activeClasses = isActive
-      ? themeConfig.active
-      : themeConfig.inactive;
-    const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer';
+    const baseClasses = 'flex items-center justify-center gap-2 text-sm rounded-lg border transition-all duration-300 hover:scale-105 hover:shadow-lg';
+    const sizeClasses = variant === 'sidebar' 
+      ? 'px-4 py-3' 
+      : showLabels 
+        ? 'px-4 py-3' 
+        : 'p-3 min-w-[48px] min-h-[48px]';
+    
+    const stateClasses = themeConfig.inactive; // Usar estilo padrão para botões de interação
+    const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : '';
 
     return (
       <button
         key={control}
         onClick={() => !disabled && onInteractionChange(control, !isActive)}
-        className={`${baseClasses} ${sizeClasses} ${activeClasses} ${disabledClasses}`}
+        className={`${baseClasses} ${sizeClasses} ${stateClasses} ${disabledClasses}`}
         title={title}
         disabled={disabled}
       >
@@ -219,16 +218,21 @@ export const ThreeControls: React.FC<ThreeControlsProps> = ({
   ) => {
     const IconComponent = icon;
 
-    const baseClasses = 'relative flex items-center justify-center transition-all duration-200 rounded-lg border-2 focus:outline-none focus:ring-2 focus:ring-offset-2';
-    const sizeClasses = showLabels ? 'px-3 py-2 text-sm' : 'p-2';
-    const activeClasses = themeConfig.inactive; // Sempre usar estilo inativo para botões de ação
-    const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer';
+    const baseClasses = 'flex items-center justify-center gap-2 text-sm rounded-lg border transition-all duration-300 hover:scale-105 hover:shadow-lg';
+    const sizeClasses = variant === 'sidebar' 
+      ? 'px-4 py-3' 
+      : showLabels 
+        ? 'px-4 py-3' 
+        : 'p-3 min-w-[48px] min-h-[48px]';
+    
+    const stateClasses = themeConfig.inactive; // Sempre usar estilo inativo para botões de ação
+    const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : '';
 
     return (
       <button
         key={`zoom-${type}`}
         onClick={() => !disabled && onClick()}
-        className={`${baseClasses} ${sizeClasses} ${activeClasses} ${disabledClasses}`}
+        className={`${baseClasses} ${sizeClasses} ${stateClasses} ${disabledClasses}`}
         title={title}
         disabled={disabled}
       >
@@ -265,8 +269,8 @@ export const ThreeControls: React.FC<ThreeControlsProps> = ({
           {/* Controles de Interação */}
           {interactionControls && onInteractionChange && (
             <>
-              {renderInteractionButton('rotation', RotateCw, 'Rotação', 'Ativar/Desativar Rotação Manual')}
-              {renderInteractionButton('autoRotation', interactionControls.autoRotation ? Pause : Play, 'Auto-Rotação', 'Ativar/Desativar Rotação Automática')}
+              {renderInteractionButton('rotation', RotateCw, 'Rotação Manual', 'Ativar/Desativar Rotação Manual')}
+              {renderInteractionButton('autoRotation', interactionControls.autoRotation ? Pause : Play, 'Rotação Automática', 'Ativar/Desativar Rotação Automática')}
             </>
           )}
         </>
@@ -311,7 +315,7 @@ export const HorizontalThreeControls: React.FC<Omit<ThreeControlsProps, 'variant
  * Componente especializado para sidebar (usado no HeroWithProducts)
  */
 export const SidebarThreeControls: React.FC<Omit<ThreeControlsProps, 'variant'>> = (props) => (
-  <ThreeControls {...props} variant="sidebar" showLabels={true} theme="orange" />
+  <ThreeControls {...props} variant="sidebar" showLabels={true} theme="teal" />
 );
 
 /**

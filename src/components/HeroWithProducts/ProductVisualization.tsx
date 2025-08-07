@@ -53,7 +53,7 @@ export const ProductVisualization: React.FC<ProductVisualizationProps> = React.m
   } = useMouseControls({
     initialZoom: 50,
     enableAutoRotation: true,
-    autoRotationSpeed: 0.0004,
+    autoRotationSpeed: 0.0016,
     lookAtTarget: [0, 5, 0],
     cameraOffset: [0, 10, 0]
   });

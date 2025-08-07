@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Wheat, Droplets, Factory, Truck } from 'lucide-react';
+import { Button } from './ui/button';
 
 interface Product {
   id: number;
@@ -182,13 +183,15 @@ const ProductSlideshow = () => {
         {/* Dots Indicator */}
         <div className="flex justify-center space-x-3 mt-8">
           {products.map((_, index) => (
-            <button
+            <Button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                index === currentSlide 
-                  ? 'bg-teal-600 scale-125' 
-                  : 'bg-gray-300 hover:bg-gray-400'
+              variant="ghost"
+              size="icon"
+              className={`w-3 h-3 p-0 rounded-full transition-all duration-300 hover:scale-105 ${
+                index === currentSlide
+                  ? 'bg-primary scale-125'
+                  : 'bg-muted hover:bg-muted-foreground/20'
               }`}
             />
           ))}
@@ -196,12 +199,14 @@ const ProductSlideshow = () => {
 
         {/* Auto-play indicator */}
         <div className="text-center mt-4">
-          <button
+          <Button
             onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-            className="text-sm text-gray-500 hover:text-gray-700 transition-colors duration-200"
+            variant="ghost"
+            size="sm"
+            className="text-muted-foreground hover:text-foreground"
           >
             {isAutoPlaying ? 'Pausar' : 'Reproduzir'} apresentação automática
-          </button>
+          </Button>
         </div>
       </div>
     </section>

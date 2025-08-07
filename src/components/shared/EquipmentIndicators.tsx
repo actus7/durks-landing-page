@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '../ui/button';
 
 /**
  * Tipos de equipamento suportados
@@ -112,7 +113,7 @@ export const EquipmentIndicators: React.FC<EquipmentIndicatorsProps> = React.mem
   /**
    * Renderiza um indicador individual
    */
-  const renderIndicator = (equipment: EquipmentConfig, index: number) => {
+  const renderIndicator = (equipment: EquipmentConfig) => {
     const isActive = currentEquipment === equipment.id;
     const isDisabled = isTransitioning;
 
@@ -125,10 +126,12 @@ export const EquipmentIndicators: React.FC<EquipmentIndicatorsProps> = React.mem
       : '';
 
     return (
-      <button
+      <Button
         key={equipment.id}
         onClick={() => !isDisabled && onEquipmentChange(equipment.id)}
-        className={`${baseClasses} ${stateClasses} ${disabledClasses}`}
+        variant="ghost"
+        size="icon"
+        className={`${baseClasses} ${stateClasses} ${disabledClasses} hover:scale-105`}
         title={showTooltips ? equipment.name : undefined}
         disabled={isDisabled}
         aria-label={`Selecionar ${equipment.name}`}
@@ -177,7 +180,7 @@ export const EquipmentIndicators: React.FC<EquipmentIndicatorsProps> = React.mem
     <div className={`${getContainerClasses()} ${className}`}>
       {/* Indicadores */}
       <div className={`flex ${sizeConfig.gap} items-center`}>
-        {equipments.map(renderIndicator)}
+        {equipments.map((equipment) => renderIndicator(equipment))}
       </div>
       
       {/* Label */}
@@ -202,20 +205,22 @@ export const BottomEquipmentIndicators: React.FC<Omit<EquipmentIndicatorsProps, 
     <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
       <div className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
         {equipments.map((equipment) => (
-          <button
+          <Button
             key={equipment.id}
             onClick={() => !isTransitioning && onEquipmentChange(equipment.id)}
             disabled={isTransitioning}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+            variant="ghost"
+            size="sm"
+            className={`rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 ${
               currentEquipment === equipment.id
                 ? `${activeColor} text-white shadow-lg`
                 : `${inactiveColor} text-white`
-            } ${isTransitioning ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+            }`}
             title={showTooltips ? equipment.name : undefined}
             aria-label={`Selecionar ${equipment.name}`}
           >
             {equipment.name}
-          </button>
+          </Button>
         ))}
       </div>
     </div>

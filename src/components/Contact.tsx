@@ -198,7 +198,7 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleInputChange}
                       required
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      className="border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 flex h-10 w-full rounded-md border bg-transparent px-3 py-2 text-sm shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <option value="">Selecione um assunto</option>
                       <option value="consultoria">Consultoria em Engenharia</option>
@@ -228,8 +228,9 @@ const Contact = () => {
                   {/* Submit Button */}
                   <Button
                     type="submit"
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-4 px-6 transition-all duration-300 flex items-center justify-center space-x-2"
+                    variant="default"
                     size="lg"
+                    className="w-full font-semibold"
                   >
                     <Send className="w-5 h-5" />
                     <span>Enviar Mensagem</span>

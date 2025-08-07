@@ -2,6 +2,7 @@ import React from 'react';
 import { Factory, RotateCcw, Eye } from 'lucide-react';
 import { SidebarThreeControls } from '../shared/ThreeControls';
 import type { RenderMode } from '../shared/ThreeControls';
+import { Button } from '../ui/button';
 
 /**
  * Props para o componente ProductSelector
@@ -111,8 +112,9 @@ export const ProductSelector: React.FC<ProductSelectorProps> = ({
 
       {/* Action Buttons */}
       <div className="space-y-3">
-        <button
-          className="w-full px-4 py-3 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        <Button
+          variant="accent"
+          className="w-full font-semibold"
           disabled={disabled}
           onClick={() => {
             const contactSection = document.getElementById('contact');
@@ -120,10 +122,11 @@ export const ProductSelector: React.FC<ProductSelectorProps> = ({
           }}
         >
           Solicitar Orçamento
-        </button>
-        
-        <button
-          className="w-full px-4 py-3 border-2 border-teal-400 text-teal-400 font-semibold rounded-lg hover:bg-teal-400 hover:text-teal-900 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        </Button>
+
+        <Button
+          variant="outline"
+          className="w-full border-2 border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-teal-900 font-semibold"
           disabled={disabled}
           onClick={() => {
             const aboutSection = document.getElementById('about');
@@ -131,7 +134,7 @@ export const ProductSelector: React.FC<ProductSelectorProps> = ({
           }}
         >
           Saiba Mais
-        </button>
+        </Button>
       </div>
 
       {/* Additional Info */}
