@@ -7,7 +7,7 @@ import { SiloGeometry } from '../../lib/three/geometries/SiloGeometry';
 import { TulhaGeometry } from '../../lib/three/geometries/TulhaGeometry';
 import { ElevadorGeometry } from '../../lib/three/geometries/ElevadorGeometry';
 import { VerticalThreeControls } from '../shared/ThreeControls';
-import { BottomEquipmentIndicators, useEquipmentState, useAutoSwitch } from '../shared/EquipmentIndicators';
+import { EquipmentIndicators, BottomEquipmentIndicators, useEquipmentState, useAutoSwitch } from '../shared/EquipmentIndicators';
 import type { RenderMode } from '../shared/ThreeControls';
 import type { EquipmentType } from '../shared/EquipmentIndicators';
 
@@ -256,14 +256,21 @@ export const Hero3DVisualization: React.FC<Hero3DVisualizationProps> = React.mem
       </div>
 
       {/* Equipment Indicators - Bottom center */}
-      <BottomEquipmentIndicators
-        equipments={EQUIPMENT_CONFIGS}
-        currentEquipment={currentEquipment}
-        onEquipmentChange={switchEquipment}
-        isTransitioning={isTransitioning}
-        activeColor="bg-teal-500"
-        showLabel={false}
-      />
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+        <EquipmentIndicators
+          equipments={EQUIPMENT_CONFIGS}
+          currentEquipment={currentEquipment}
+          onEquipmentChange={switchEquipment}
+          isTransitioning={isTransitioning}
+          activeColor="bg-teal-500"
+          inactiveColor="bg-white/30 hover:bg-white/50"
+          showLabel={true}
+          labelPosition="right"
+          size="md"
+          showTooltips={true}
+          className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3"
+        />
+      </div>
     </div>
   );
 });
