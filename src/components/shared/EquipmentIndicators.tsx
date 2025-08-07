@@ -187,15 +187,40 @@ export const EquipmentIndicators: React.FC<EquipmentIndicatorsProps> = React.mem
 });
 
 /**
- * Componente especializado para indicadores na parte inferior (usado no Hero)
+ * Componente especializado para botões de equipamento na parte inferior (usado no Hero)
  */
-export const BottomEquipmentIndicators: React.FC<Omit<EquipmentIndicatorsProps, 'labelPosition' | 'className'>> = React.memo((props) => (
-  <EquipmentIndicators 
-    {...props} 
-    labelPosition="right"
-    className="absolute bottom-6 left-1/2 transform -translate-x-1/2"
-  />
-));
+export const BottomEquipmentIndicators: React.FC<Omit<EquipmentIndicatorsProps, 'labelPosition' | 'className' | 'size' | 'showLabel'>> = React.memo(({
+  equipments = DEFAULT_EQUIPMENTS,
+  currentEquipment,
+  onEquipmentChange,
+  isTransitioning = false,
+  activeColor = 'bg-teal-500',
+  inactiveColor = 'bg-white/20 hover:bg-white/30',
+  showTooltips = true
+}) => {
+  return (
+    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+      <div className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
+        {equipments.map((equipment) => (
+          <button
+            key={equipment.id}
+            onClick={() => !isTransitioning && onEquipmentChange(equipment.id)}
+            disabled={isTransitioning}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              currentEquipment === equipment.id
+                ? `${activeColor} text-white shadow-lg`
+                : `${inactiveColor} text-white`
+            } ${isTransitioning ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+            title={showTooltips ? equipment.name : undefined}
+            aria-label={`Selecionar ${equipment.name}`}
+          >
+            {equipment.name}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+});
 
 /**
  * Componente especializado para indicadores compactos

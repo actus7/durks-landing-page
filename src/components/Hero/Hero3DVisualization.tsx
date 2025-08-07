@@ -256,24 +256,14 @@ export const Hero3DVisualization: React.FC<Hero3DVisualizationProps> = React.mem
       </div>
 
       {/* Equipment Indicators - Bottom center */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-        <div className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
-          {EQUIPMENT_CONFIGS.map((equipment) => (
-            <button
-              key={equipment.id}
-              onClick={() => switchEquipment(equipment.id)}
-              disabled={isTransitioning}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                currentEquipment === equipment.id
-                  ? 'bg-teal-500 text-white shadow-lg'
-                  : 'bg-white/20 text-white hover:bg-white/30'
-              } ${isTransitioning ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
-            >
-              {equipment.name}
-            </button>
-          ))}
-        </div>
-      </div>
+      <BottomEquipmentIndicators
+        equipments={EQUIPMENT_CONFIGS}
+        currentEquipment={currentEquipment}
+        onEquipmentChange={switchEquipment}
+        isTransitioning={isTransitioning}
+        activeColor="bg-teal-500"
+        showLabel={false}
+      />
     </div>
   );
 });
