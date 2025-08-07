@@ -1,6 +1,6 @@
 import React from 'react';
 import HeroContent from './Hero/HeroContent';
-import Hero3DVisualization from './Hero/Hero3DVisualization';
+import { LazyHero3DVisualization } from './LazyComponents';
 
 /**
  * Componente principal Hero - orquestra HeroContent e Hero3DVisualization
@@ -38,7 +38,7 @@ const Hero: React.FC = () => {
         />
 
         {/* Right Side - 3D Visualization */}
-        <Hero3DVisualization
+        <LazyHero3DVisualization
           enableAutoSwitch={true}
           autoSwitchInterval={8000}
         />

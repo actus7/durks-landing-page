@@ -1,5 +1,5 @@
 import { companyData } from '../data/company';
-import { Building2, MapPin, Users, Target, Award, Clock } from 'lucide-react';
+import { Building2, MapPin, Users, Target, Award, Clock } from '../lib/icons';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card';
 import { Button } from './ui/button';
 

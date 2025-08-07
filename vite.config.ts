@@ -9,12 +9,40 @@ export default defineConfig({
     sourcemap: 'hidden',
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          three: ['three'],
-          ui: ['lucide-react'],
-          router: ['react-router-dom'],
-          utils: ['zustand', 'clsx', 'class-variance-authority', 'tailwind-merge']
+        manualChunks: (id) => {
+          // Vendor chunks
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('three')) {
+              return 'three-vendor';
+            }
+            if (id.includes('lucide-react')) {
+              return 'icons-vendor';
+            }
+            if (id.includes('react-router')) {
+              return 'router-vendor';
+            }
+            if (id.includes('zustand') || id.includes('clsx') || id.includes('class-variance-authority') || id.includes('tailwind-merge')) {
+              return 'utils-vendor';
+            }
+            if (id.includes('@radix-ui')) {
+              return 'ui-vendor';
+            }
+            return 'vendor';
+          }
+
+          // Component chunks
+          if (id.includes('src/components/Hero/Hero3D') || id.includes('src/lib/three')) {
+            return 'three-components';
+          }
+          if (id.includes('src/components/ui/')) {
+            return 'ui-components';
+          }
+          if (id.includes('src/pages/')) {
+            return 'pages';
+          }
         },
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
@@ -32,8 +60,14 @@ export default defineConfig({
     }
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'three'],
-    exclude: []
+    include: ['react', 'react-dom', 'three', 'lucide-react', 'clsx', 'tailwind-merge'],
+    exclude: ['@types/three']
+  },
+  esbuild: {
+    // Remove console.log em produção
+    drop: ['console', 'debugger'],
+    // Tree-shaking mais agressivo
+    treeShaking: true
   },
   plugins: [
     react({

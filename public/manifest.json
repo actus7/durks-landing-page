@@ -1,0 +1,28 @@
+{
+  "name": "DÜRKS Consultoria e Engenharia",
+  "short_name": "DÜRKS",
+  "description": "Soluções inovadoras em engenharia aplicada ao agronegócio e setor industrial",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#253831",
+  "theme_color": "#253831",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity"],
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/logo-durks.png",
+      "sizes": "208x125",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}

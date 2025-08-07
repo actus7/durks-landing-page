@@ -7,7 +7,7 @@ import { SiloGeometry } from '../../lib/three/geometries/SiloGeometry';
 import { TulhaGeometry } from '../../lib/three/geometries/TulhaGeometry';
 import { ElevadorGeometry } from '../../lib/three/geometries/ElevadorGeometry';
 import { VerticalThreeControls } from '../shared/ThreeControls';
-import { EquipmentIndicators, BottomEquipmentIndicators, useEquipmentState, useAutoSwitch } from '../shared/EquipmentIndicators';
+import { EquipmentIndicators, useEquipmentState, useAutoSwitch } from '../shared/EquipmentIndicators';
 import type { RenderMode } from '../shared/ThreeControls';
 import type { EquipmentType } from '../shared/EquipmentIndicators';
 
@@ -49,7 +49,6 @@ export const Hero3DVisualization: React.FC<Hero3DVisualizationProps> = React.mem
     cameraRef,
     rendererRef,
     canvasRef,
-    animationIdRef,
     initializeScene,
     startAnimation,
     cleanup
@@ -258,18 +257,18 @@ export const Hero3DVisualization: React.FC<Hero3DVisualizationProps> = React.mem
       {/* Equipment Indicators - Bottom center */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
         <EquipmentIndicators
-            equipments={EQUIPMENT_CONFIGS}
-            currentEquipment={currentEquipment}
-            onEquipmentChange={switchEquipment}
-            isTransitioning={isTransitioning}
-            activeColor="bg-teal-300/60"
-            inactiveColor="bg-white/10"
-            showLabel={true}
-            labelPosition="right"
-            size="sm"
-            showTooltips={true}
-            className="bg-white/3 backdrop-blur-sm rounded-full px-3 py-1.5 opacity-80"
-          />
+          equipments={EQUIPMENT_CONFIGS}
+          currentEquipment={currentEquipment}
+          onEquipmentChange={switchEquipment}
+          isTransitioning={isTransitioning}
+          activeColor="bg-teal-300/60"
+          inactiveColor="bg-white/10"
+          showLabel={true}
+          labelPosition="right"
+          size="sm"
+          showTooltips={true}
+          className="bg-white/3 backdrop-blur-sm rounded-full px-3 py-1.5 opacity-80"
+        />
       </div>
     </div>
   );

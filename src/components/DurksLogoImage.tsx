@@ -1,4 +1,5 @@
 import React from 'react';
+import OptimizedImage from './OptimizedImage';
 
 interface DurksLogoImageProps {
   className?: string;
@@ -14,23 +15,23 @@ const DurksLogoImage: React.FC<DurksLogoImageProps> = ({
   alt = "DÜRKS Consultoria e Engenharia"
 }) => {
   const imageStyles = {
-    maxWidth: '100%',
+    filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1))',
+    // Dimensões fixas para evitar layout shift
     width: `${width}px`,
-    height: 'auto',
-    objectFit: 'contain' as const,
-    filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1))'
+    height: `${height}px`,
+    aspectRatio: `${width}/${height}`
   };
 
   return (
-    <img
+    <OptimizedImage
       src="/logo-durks.png"
       alt={alt}
-      className={`${className} select-none`}
+      className={className}
       width={width}
       height={height}
       style={imageStyles}
       loading="eager"
-      decoding="async"
+      priority={true}
     />
   );
 };
